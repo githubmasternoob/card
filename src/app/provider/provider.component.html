@@ -1,0 +1,70 @@
+<section>
+  <div class="container">
+    <div class="content1">
+      <img *ngIf="!items" alt="imgdefault" src="../../assets/img/img5.png">
+      <img *ngIf="items" alt="cardimg" height="290px" src="assets/{{items['hydra:member'][0].carte.photoName}}"
+           width="450px">
+      <div *ngIf="itemDetails" class="detailcclass">
+        <ul *ngFor="let item of itemDetails['hydra:member']">
+          Solde restant
+          <li>{{item.currentprice}}</li>
+          Solde retire
+          <li>{{item.withdraw}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="details">
+      <div class="content">
+        <!--        <form>-->
+        <!--          <label>Code</label>-->
+        <!--          <input name="code" type="text">-->
+        <!--          <label>Security Code</label>-->
+        <!--          <input name="security" type="text">-->
+        <!--          <button name="search" type="submit">Search</button>-->
+        <!--        </form>-->
+        <form #f="ngForm" (ngSubmit)="onRechercher(f.value)">
+          <label>Code
+            <input class="putcode" name="code" ngModel required type="text">
+          </label><br>
+          <!--          <button name="submit" type="submit"><span>Recherche</span></button>-->
+          <label>Security Code
+            <input [(ngModel)]="security" name="security" type="number">
+          </label>
+          <button name="search" type="submit">Search</button>
+        </form>
+      </div>
+      <div *ngIf="items">
+        <ul *ngFor="let i of items['hydra:member']" class="Item">
+          <div class="donne">
+            <p><i class="material-icons">https</i>{{i.code}}</p>
+            <p><i class="material-icons">euro_symbol</i>{{i.price}}</p>
+            <!--            <p><i class="material-icons">date_range</i>{{i.dateAdd}}</p>-->
+            <button (click)="onGetItemDetails(i)">Details</button>
+          </div>
+        </ul>
+
+      </div>
+      <!--      <div *ngIf="itemDetails" class="detailcclass">-->
+      <!--        <ul *ngFor="let item of itemDetails['hydra:member']">-->
+      <!--          Solde restant-->
+      <!--          <li>{{item.currentprice}}</li>-->
+      <!--          Solde retire-->
+      <!--          <li>{{item.withdraw}}</li>-->
+      <!--        </ul>-->
+      <!--      </div>-->
+      <div *ngIf="showForm" class="mysolde">
+        <p>Your Solde : {{price}} £</p>
+        <p *ngIf="showPriceStay">Your Stay : {{reslt}} Â£</p>
+      </div>
+      <div *ngIf="showForm">
+        <label>PRICE RETIRE </label>
+        <form #f1="ngForm" (ngSubmit)="onRetirePrice(f1.value)" class="solde">
+          <label>
+            <input [(ngModel)]="retire" name="retire" type="number">
+          </label><br>
+          <button name="submit" type="submit"><span>RETIRE</span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
