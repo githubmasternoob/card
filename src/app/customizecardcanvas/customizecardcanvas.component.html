@@ -1,0 +1,60 @@
+<section>
+
+  <div class="container">
+    <div class="content1">
+      <canvas #myCanvas height="250px" width="400px"></canvas>
+
+    </div>
+    <div class="details">
+      <div class="content">
+        <h2>{{cartes.name}}</h2>
+        <hr>
+        <label for="name"> Name :
+          <input [(ngModel)]="name" id="name" name="name" type="text"
+                 value="Your Name">
+        </label>
+        <label>Color:</label>
+        <div>
+          <input [(ngModel)]="color" checked id="blue" name="drone" type="radio" value="blue">
+
+          <label for="blue">Blue</label>
+        </div>
+
+        <div>
+          <input [(ngModel)]="color" id="red" name="drone" type="radio" value="red">
+          <label for="red">Red</label>
+        </div>
+
+        <div>
+          <input [(ngModel)]="color" id="green" name="drone" type="radio" value="green">
+          <label for="green">Green</label>
+        </div>
+        <label>
+          <input [(ngModel)]="carteData.price" class="demo"
+                 max="{{cartes.maxvaluee}}"
+                 min="{{cartes.minvalue}}" type="range" value="20">
+        </label>
+        <h3>{{carteData.price  | number:'0.2'}}$</h3>
+        <button (click)="affect()">Add Signature</button>
+
+        <button (click)="onAddProductToCaddy(cartes.id, 0)">
+          Buy
+        </button>
+        <!--        <button (click)="imageb()">Base64</button>-->
+        <!--        <button>Buy Now</button>-->
+        <button (click)="cocher()">Offer to friend</button>
+        <form *ngIf="checked" class="friend">
+          email <input [(ngModel)]="info.mail" name="mail" type="email">
+          nom& prenom <input [(ngModel)]="info.name" name="name" type="text">
+          Message <input [(ngModel)]="info.message" name="message" type="text">
+          <!--          <button (click)="sendmail()" color="primary" mat-raised-button>Envoyer</button>-->
+          <button (click)="onAddProductToCaddy(cartes.id, 1)" color="primary" mat-raised-button>Envoyer</button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</section>
